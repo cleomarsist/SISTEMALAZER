@@ -1,40 +1,105 @@
-# .gitignore
-# Arquivo para ignorar durante versionamento do projeto
+# ============================================================================
+# Git Ignore - SISTEMALAZER ERP
+# ============================================================================
+# IMPORTANTE: Documentação e scripts SQL versionados
+# Apenas ignorar: logs, backups, cache, credenciais, IDEs
 
-# Configurações sensíveis
-/config/config.local.php
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: Credenciais e Configuração Sensível
+# ============================================================================
+.env
+.env.local
+.env.*.php
+.htpasswd
+app/config/database.local.php
+app/config/.env
 
-# Arquivos de log
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: Cache e Logs
+# ============================================================================
+logs/*
+!logs/.gitkeep
+cache/*
+!cache/.gitkeep
 *.log
-/logs/
-
-# Caches e arquivos temporários
-/temp/
-/cache/
 *.tmp
+*.temp
 
-# IDE
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: Backups do Banco
+# ============================================================================
+database/backups/*
+!database/backups/.gitkeep
+*.sql.gz
+*.sql.bak
+*.sqlite
+*.db
+
+# ============================================================================
+# ✅ VERSIONADO: Scripts SQL e Documentação
+# ============================================================================
+# database/sql/*.sql     ← VERSIONADO (scripts de criação)
+# docs/                  ← VERSIONADO (documentação)
+
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: IDEs e Editores
+# ============================================================================
 .vscode/
 .idea/
+*.sublime-workspace
+*.sublime-project
 *.swp
 *.swo
 *~
-
-# Sistema operacional
 .DS_Store
 Thumbs.db
 
-# Dependências
-/vendor/
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: Dependências PHP/Node
+# ============================================================================
+vendor/
 composer.lock
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
 
-# Uploads de usuários (caso exista)
-/uploads/
+# ============================================================================
+# 🔴 NUNCA VERSIONADO: Uploads e Arquivos Temporários
+# ============================================================================
+public/uploads/*
+!public/uploads/.gitkeep
+*.zip
+*.rar
+*.tar.gz
+tmp/
+temp/
+*backups/
 
-# Arquivo de banco de dados local (se usar SQLite)
-*.db
-*.sqlite
+# Geradores de config
+config/database.yml
+config/secrets.yml
 
-# Arquivo de senhas ou credenciais
-.env
-.env.local
+# Ambiente
+.env.production
+.env.testing
+.env.development
+
+# ============================================================================
+# EXCEÇÕES (arquivos que NÃO ignorar)
+# ============================================================================
+
+# NÃO ignorar diretórios normais (usar "!" para exceção)
+!logs/
+!cache/
+!uploads/
+!uploads/temp/
+!public/uploads/
+
+# Manter alguns arquivos de exemplo
+!config/config.example.php
+!.env.example
+
+# ============================================================================
+# FIM DO GITIGNORE
+# ============================================================================

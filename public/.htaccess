@@ -1,0 +1,136 @@
+# ============================================================================
+# ARQUIVO DE CONFIGURAÇÃO DO APACHE - ROTEAMENTO
+# 
+# ETAPA 1: ARQUITETURA GERAL
+# 
+# Este arquivo configura o Apache para redirecionar todas as requisições
+# para o arquivo index.php, permitindo que a aplicação PHP controle
+# o roteamento via URL amigável.
+# 
+# Exemplo:
+# URL acessada: /SISTEMALAZER/public/clientes/listar
+# Redirecionado para: /SISTEMALAZER/public/index.php?url=clientes/listar
+# PHP recebe: $_GET['url'] = 'clientes/listar'
+# ============================================================================
+
+# Habilita o módulo de reescrita de URL
+<IfModule mod_rewrite.c>
+    # Ativa o motor de reescrita
+    RewriteEngine On
+    
+    # Define a base de reescrita como a própria pasta public/
+    RewriteBase /SISTEMALAZER/public/
+    
+    # ========================================================================
+    # CONDIÇÕES: Não reescreve se é arquivo ou diretório REAL
+    # ========================================================================
+    
+    # Se o arquivo requisitado EXISTE no servidor, não reescreve
+    # Exemplo: /css/style.css, /js/script.js, /img/logo.png
+    RewriteCond %{REQUEST_FILENAME} !-f
+    
+    # Se a pasta requisitada EXISTE no servidor, não reescreve
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # ========================================================================
+    # REGRA DE REESCRITA
+    # ========================================================================
+    
+    # (.*)        = Captura a URL inteira (ex: clientes/listar)
+    # index.php   = Arquivo para o qual redirecionar
+    # url=$1      = Passa a URL capturada como parâmetro
+    # [QSA]       = Preserva query string do original (query string append)
+    # [L]         = Last rule (para de processar outras regras)
+    
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# ============================================================================
+# CONFIGURAÇÕES ADICIONAIS DE SEGURANÇA
+# ============================================================================
+
+# Desabilita listagem de diretórios
+Options -Indexes
+
+# Protege acesso a .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protege acesso a arquivos de configuração
+<FilesMatch "\.php$">
+    # Permite apenas índice
+</FilesMatch>
+
+# Define tipo MIME para melhor segurança
+AddType application/x-httpd-php-source .php~
+
+# ============================================================================
+# COMPRESSÃO DE RESPOSTA (performance)
+# ============================================================================
+
+<IfModule mod_deflate.c>
+    # Comprime CSS
+    AddOutputFilterByType DEFLATE text/css
+    
+    # Comprime JavaScript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    
+    # Comprime HTML
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/plain
+    
+    # Comprime XML
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+</IfModule>
+
+# ============================================================================
+# CACHE (performance)
+# ============================================================================
+
+<IfModule mod_expires.c>
+    # Ativa expiração
+    ExpiresActive On
+    
+    # Imagens: 1 mês
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/ico "access plus 1 month"
+    
+    # CSS: 1 semana
+    ExpiresByType text/css "access plus 1 week"
+    
+    # JavaScript: 1 semana
+    ExpiresByType application/javascript "access plus 1 week"
+    
+    # Default: 1 dia
+    ExpiresDefault "access plus 1 day"
+</IfModule>
+
+# ============================================================================
+# HEADERS DE SEGURANÇA
+# ============================================================================
+
+# Força HTTPS (remover comentário em produção)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Protege contra MIME type sniffing
+Header set X-Content-Type-Options "nosniff"
+
+# Protege contra clickjacking
+Header set X-Frame-Options "SAMEORIGIN"
+
+# Habilita proteção XSS do navegador
+Header set X-XSS-Protection "1; mode=block"
+
+# Content Security Policy (básico)
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'"
+
+# ============================================================================
+# FIM DO ARQUIVO .htaccess
+# ============================================================================
