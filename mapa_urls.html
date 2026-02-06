@@ -53,38 +53,38 @@
 
         <div class="url-item working">
             <div class="method-get">GET</div>
-            <strong>http://localhost/SISTEMALAZER/index.php</strong>
-            <p class="mt-2 mb-0">🏠 Dashboard padrão (página inicial do sistema)</p>
+            <strong>http://localhost/SISTEMALAZER/clientes</strong>
+            <p class="mt-2 mb-0">👥 Listar todos os clientes com filtros (URL amigável)</p>
         </div>
 
         <div class="url-item working">
             <div class="method-get">GET</div>
-            <strong>http://localhost/SISTEMALAZER/index.php?page=dashboard</strong>
-            <p class="mt-2 mb-0">📊 Dashboard com KPIs e gráficos</p>
+            <strong>http://localhost/SISTEMALAZER/orcamentos</strong>
+            <p class="mt-2 mb-0">📋 Listar todos os orçamentos (URL amigável)</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/cliente-novo</strong>
+            <p class="mt-2 mb-0">➕ Formulário para criar novo cliente (URL amigável)</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/dashboard</strong>
+            <p class="mt-2 mb-0">📊 Dashboard com KPIs e gráficos (URL amigável)</p>
         </div>
 
         <div class="url-item working">
             <div class="method-get">GET</div>
             <strong>http://localhost/SISTEMALAZER/index.php?page=clientes</strong>
-            <p class="mt-2 mb-0">👥 Listar todos os clientes com filtros</p>
-        </div>
-
-        <div class="url-item working">
-            <div class="method-get">GET</div>
-            <strong>http://localhost/SISTEMALAZER/index.php?page=cliente-novo</strong>
-            <p class="mt-2 mb-0">➕ Formulário para criar novo cliente</p>
-        </div>
-
-        <div class="url-item working">
-            <div class="method-get">GET</div>
-            <strong>http://localhost/SISTEMALAZER/index.php?page=orcamentos</strong>
-            <p class="mt-2 mb-0">📋 Listar todos os orçamentos</p>
+            <p class="mt-2 mb-0">👥 Listar clientes (URL tradicional - ainda funciona)</p>
         </div>
 
         <div style="margin-top: 15px;">
             <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/')">Testar Raiz</button>
-            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/index.php')">Testar Index</button>
-            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/index.php?page=clientes')">Testar Clientes</button>
+            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/clientes')">Testar Clientes</button>
+            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/orcamentos')">Testar Orçamentos</button>
         </div>
     </div>
 
