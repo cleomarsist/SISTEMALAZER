@@ -37,7 +37,7 @@
 define('WEB_ROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/SISTEMALAZER');
 
 // Carrega arquivo de configuração global (credenciais, constantes, etc)
-require_once dirname(dirname(__FILE__)) . '/app/config/config.php';
+require_once dirname(dirname(__FILE__)) . '/app/configuracao/config.php';
 
 // ============================================================================
 // 2. CARREGADORES AUTOMÁTICOS (AutoLoad das Classes)
@@ -56,33 +56,33 @@ spl_autoload_register(function($class) {
     // Mapeia nomes de classes para arquivos
     $paths = [
         // Banco de dados
-        'Database' => APP_PATH . '/database/Database.php',
+        'Database' => APP_PATH . '/banco_dados/Database.php',
         
         // Sessão e configuração
-        'Session' => APP_PATH . '/config/Session.php',
+        'Session' => APP_PATH . '/configuracao/Session.php',
         
         // Models (base)
-        'BaseModel' => APP_PATH . '/models/BaseModel.php',
-        'ClienteModel' => APP_PATH . '/models/ClienteModel.php',
-        'MaterialModel' => APP_PATH . '/models/MaterialModel.php',
-        'CustoModel' => APP_PATH . '/models/CustoModel.php',
-        'ProdutoModel' => APP_PATH . '/models/ProdutoModel.php',
-        'OrcamentoModel' => APP_PATH . '/models/OrcamentoModel.php',
-        'PedidoModel' => APP_PATH . '/models/PedidoModel.php',
-        'FinanceiroModel' => APP_PATH . '/models/FinanceiroModel.php',
+        'BaseModel' => APP_PATH . '/modelos/BaseModel.php',
+        'ClienteModel' => APP_PATH . '/modelos/ClienteModel.php',
+        'MaterialModel' => APP_PATH . '/modelos/MaterialModel.php',
+        'CustoModel' => APP_PATH . '/modelos/CustoModel.php',
+        'ProdutoModel' => APP_PATH . '/modelos/ProdutoModel.php',
+        'OrcamentoModel' => APP_PATH . '/modelos/OrcamentoModel.php',
+        'PedidoModel' => APP_PATH . '/modelos/PedidoModel.php',
+        'FinanceiroModel' => APP_PATH . '/modelos/FinanceiroModel.php',
         
         // Controllers (base)
-        'BaseController' => APP_PATH . '/controllers/BaseController.php',
-        'ClienteController' => APP_PATH . '/controllers/ClienteController.php',
-        'MaterialController' => APP_PATH . '/controllers/MaterialController.php',
-        'CustoController' => APP_PATH . '/controllers/CustoController.php',
-        'SimuladorController' => APP_PATH . '/controllers/SimuladorController.php',
-        'ProdutoController' => APP_PATH . '/controllers/ProdutoController.php',
-        'OrcamentoController' => APP_PATH . '/controllers/OrcamentoController.php',
-        'PedidoController' => APP_PATH . '/controllers/PedidoController.php',
-        'FinanceiroController' => APP_PATH . '/controllers/FinanceiroController.php',
-        'DashboardController' => APP_PATH . '/controllers/DashboardController.php',
-        'LoginController' => APP_PATH . '/controllers/LoginController.php',
+        'BaseController' => APP_PATH . '/controladores/BaseController.php',
+        'ClienteController' => APP_PATH . '/controladores/ClienteController.php',
+        'MaterialController' => APP_PATH . '/controladores/MaterialController.php',
+        'CustoController' => APP_PATH . '/controladores/CustoController.php',
+        'SimuladorController' => APP_PATH . '/controladores/SimuladorController.php',
+        'ProdutoController' => APP_PATH . '/controladores/ProdutoController.php',
+        'OrcamentoController' => APP_PATH . '/controladores/OrcamentoController.php',
+        'PedidoController' => APP_PATH . '/controladores/PedidoController.php',
+        'FinanceiroController' => APP_PATH . '/controladores/FinanceiroController.php',
+        'DashboardController' => APP_PATH . '/controladores/DashboardController.php',
+        'LoginController' => APP_PATH . '/controladores/LoginController.php',
     ];
     
     // Se a classe está mapeada, carrega o arquivo
@@ -144,7 +144,7 @@ $params = array_slice($urlParts, 2); // Dados adicionais
 
 // Mapeia módulo para controller
 $controllerName = $module . 'Controller';
-$controllerFile = APP_PATH . '/controllers/' . $controllerName . '.php';
+$controllerFile = APP_PATH . '/controladores/' . $controllerName . '.php';
 
 try {
     // Verifica se controller existe
