@@ -1,0 +1,40 @@
+# .gitignore
+# Arquivo para ignorar durante versionamento do projeto
+
+# Configurações sensíveis
+/config/config.local.php
+
+# Arquivos de log
+*.log
+/logs/
+
+# Caches e arquivos temporários
+/temp/
+/cache/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dependências
+/vendor/
+composer.lock
+
+# Uploads de usuários (caso exista)
+/uploads/
+
+# Arquivo de banco de dados local (se usar SQLite)
+*.db
+*.sqlite
+
+# Arquivo de senhas ou credenciais
+.env
+.env.local

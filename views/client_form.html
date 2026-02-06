@@ -1,0 +1,42 @@
+<!-- views/client_form.html -->
+<!-- Formulário de cadastro de cliente/fornecedor -->
+<!-- Módulo: Clientes/Fornecedores -->
+<!-- Etapa: Cadastro inicial -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente/Fornecedor</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <h2>Cadastro de Cliente/Fornecedor</h2>
+    <form id="clientForm" method="post" action="../controllers/ClientController.php">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="document">CPF/CNPJ:</label>
+        <input type="text" id="document" name="document" required>
+        <br>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email">
+        <br>
+        <label for="phone">Telefone:</label>
+        <input type="text" id="phone" name="phone">
+        <br>
+        <label for="address">Endereço:</label>
+        <input type="text" id="address" name="address">
+        <br>
+        <label for="type">Tipo:</label>
+        <select id="type" name="type">
+            <option value="cliente">Cliente</option>
+            <option value="fornecedor">Fornecedor</option>
+        </select>
+        <br>
+        <button type="submit">Salvar</button>
+    </form>
+    <div id="clientMsg"></div>
+    <script src="../assets/client.js"></script>
+</body>
+</html>
