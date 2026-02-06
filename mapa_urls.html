@@ -1,0 +1,313 @@
+<?php
+/**
+ * MAPA COMPLETO DE URLs - SISTEMALAZER
+ * Todas as URLs disponíveis no sistema
+ */
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de URLs - SISTEMALAZER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f5f5f5; padding: 20px; }
+        .url-section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #667eea; }
+        .url-item { 
+            background: #f9f9f9; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .url-item.working { border-left-color: #28a745; }
+        .url-item.test { border-left-color: #17a2b8; }
+        .method-get { color: #0066cc; font-weight: bold; }
+        .method-post { color: #ff9900; font-weight: bold; }
+        .method-put { color: #9944ff; font-weight: bold; }
+        .method-delete { color: #cc0000; font-weight: bold; }
+        .test-button { margin: 5px; }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-5">📍 Mapa Completo de URLs - SISTEMALAZER</h1>
+    
+    <div class="alert alert-info">
+        <strong>Recebeu erro 404?</strong> Verifique se a URL está nesta lista. Se não estiver, é porque não existe ainda (será implementada em breve).
+    </div>
+
+    <!-- PÁGINAS PRINCIPAIS -->
+    <div class="url-section">
+        <h3>🏠 Páginas Principais (Views)</h3>
+        <p class="text-muted">URLs que retornam HTML com interfaces visuais</p>
+        
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/</strong>
+            <p class="mt-2 mb-0">📌 Página inicial com boas-vindas (recomendado começar aqui)</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/index.php</strong>
+            <p class="mt-2 mb-0">🏠 Dashboard padrão (página inicial do sistema)</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/index.php?page=dashboard</strong>
+            <p class="mt-2 mb-0">📊 Dashboard com KPIs e gráficos</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/index.php?page=clientes</strong>
+            <p class="mt-2 mb-0">👥 Listar todos os clientes com filtros</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/index.php?page=cliente-novo</strong>
+            <p class="mt-2 mb-0">➕ Formulário para criar novo cliente</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/index.php?page=orcamentos</strong>
+            <p class="mt-2 mb-0">📋 Listar todos os orçamentos</p>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/')">Testar Raiz</button>
+            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/index.php')">Testar Index</button>
+            <button class="btn btn-primary btn-sm test-button" onclick="testarURL('/index.php?page=clientes')">Testar Clientes</button>
+        </div>
+    </div>
+
+    <!-- API CLIENTES -->
+    <div class="url-section">
+        <h3>👥 API: Clientes</h3>
+        <p class="text-muted">Endpoints para gerenciar clientes (AJAX)</p>
+        
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes</strong>
+            <p class="mt-2 mb-0">Listar todos os clientes (retorna JSON)</p>
+            <small class="text-muted">Parâmetros opcionais: &pagina=1, &nome=João, &tipo=PF</small>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes&pagina=2</strong>
+            <p class="mt-2 mb-0">Listar clientes com paginação</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes&nome=João</strong>
+            <p class="mt-2 mb-0">Buscar cliente por nome</p>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-post">POST</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes</strong>
+            <p class="mt-2 mb-0">Criar novo cliente</p>
+            <small class="text-muted">Body: JSON com dados do cliente</small>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-put">PUT</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes&id=1</strong>
+            <p class="mt-2 mb-0">Atualizar cliente existente</p>
+            <small class="text-muted">Body: JSON com dados a atualizar</small>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-delete">DELETE</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=clientes&id=1</strong>
+            <p class="mt-2 mb-0">Deletar cliente</p>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <button class="btn btn-success btn-sm test-button" onclick="testarAPI('/api.php?rota=clientes')">Testar GET</button>
+            <button class="btn btn-success btn-sm test-button" onclick="testarAPI('/api.php?rota=clientes&nome=João')">Testar Filtro</button>
+        </div>
+    </div>
+
+    <!-- API ORÇAMENTOS -->
+    <div class="url-section">
+        <h3>📋 API: Orçamentos</h3>
+        <p class="text-muted">Endpoints para gerenciar orçamentos</p>
+        
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=orcamentos</strong>
+            <p class="mt-2 mb-0">Listar todos os orçamentos</p>
+            <small class="text-muted">Parâmetros opcionais: &status=aberto, &numero=ORC-2026</small>
+        </div>
+
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=orcamentos&status=aberto</strong>
+            <p class="mt-2 mb-0">Filtrar orçamentos por status</p>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <button class="btn btn-success btn-sm test-button" onclick="testarAPI('/api.php?rota=orcamentos')">Testar GET</button>
+            <button class="btn btn-success btn-sm test-button" onclick="testarAPI('/api.php?rota=orcamentos&status=aberto')">Testar Filtro</button>
+        </div>
+    </div>
+
+    <!-- API VIACEP -->
+    <div class="url-section">
+        <h3>🏠 API: ViaCEP (Integração)</h3>
+        <p class="text-muted">Buscar endereço por CEP</p>
+        
+        <div class="url-item working">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/api.php?rota=viacep&cep=01310100</strong>
+            <p class="mt-2 mb-0">Buscar endereço pelo CEP</p>
+            <small class="text-muted">Retorna: logradouro, bairro, localidade, uf</small>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <button class="btn btn-success btn-sm test-button" onclick="testarAPI('/api.php?rota=viacep&cep=01310100')">Testar CEP</button>
+        </div>
+    </div>
+
+    <!-- TESTES E DIAGNÓSTICO -->
+    <div class="url-section">
+        <h3>🧪 Testes e Diagnóstico</h3>
+        <p class="text-muted">Ferramentas para testar e depurar o sistema</p>
+        
+        <div class="url-item test">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/test_api.php</strong>
+            <p class="mt-2 mb-0">✅ Testes interativos de API com botões</p>
+        </div>
+
+        <div class="url-item test">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/roteamento_diagnostico.php</strong>
+            <p class="mt-2 mb-0">🔧 Diagnóstico de roteamento e mod_rewrite</p>
+        </div>
+
+        <div class="url-item test">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/diagnostico.php</strong>
+            <p class="mt-2 mb-0">🔍 Diagnóstico completo do sistema</p>
+        </div>
+
+        <div class="url-item test">
+            <div class="method-get">GET</div>
+            <strong>http://localhost/SISTEMALAZER/test_paths.php</strong>
+            <p class="mt-2 mb-0">📁 Teste de caminhos de arquivo</p>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <a href="/SISTEMALAZER/test_api.php" class="btn btn-info btn-sm test-button">Abrir Testes</a>
+            <a href="/SISTEMALAZER/roteamento_diagnostico.php" class="btn btn-info btn-sm test-button">Diagnóstico</a>
+        </div>
+    </div>
+
+    <!-- URLS QUE NÃO FUNCIONAM -->
+    <div class="url-section" style="border-left-color: #dc3545;">
+        <h3>❌ URLs que NÃO existem (Causam 404)</h3>
+        <p class="text-muted">Se você tentou acessar essas URLs, receberá erro 404</p>
+        
+        <div class="alert alert-danger" style="margin-bottom: 0;">
+            <p style="margin: 0;"><strong>Evite:</strong></p>
+            <ul style="margin-bottom: 0; padding-left: 30px;">
+                <li><code>/api/clientes</code> (sem .php)</li>
+                <li><code>/clientes</code> (sem index.php?page=)</li>
+                <li><code>/orcamentos</code> (sem index.php?page=)</li>
+                <li><code>/novo/cliente</code> (URL não mapeada)</li>
+                <li><code>/login</code> (não implementado ainda)</li>
+                <li><code>/admin</code> (não implementado ainda)</li>
+                <li>Qualquer arquivo que não existe no servidor</li>
+            </ul>
+            <p style="margin-top: 15px; margin-bottom: 0;"><strong>Use em vez disso:</strong></p>
+            <ul style="padding-left: 30px;">
+                <li>✅ <code>/api.php?rota=clientes</code></li>
+                <li>✅ <code>/index.php?page=clientes</code></li>
+                <li>✅ <code>/index.php?page=orcamentos</code></li>
+                <li>✅ <code>/index.php?page=cliente-novo</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="url-section">
+        <h3>📊 Resumo</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>✅ Funcionam</h5>
+                <ul style="padding-left: 20px;">
+                    <li>Páginas com <code>?page=</code></li>
+                    <li>APIs com <code>api.php?rota=</code></li>
+                    <li>Testes em <code>test_*.php</code></li>
+                    <li>Raiz <code>/</code> e <code>/index.php</code></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5>❌ Não Funcionam</h5>
+                <ul style="padding-left: 20px;">
+                    <li>URLs sem <code>.php</code></li>
+                    <li>Páginas sem <code>/index.php</code></li>
+                    <li>Arquivos que não existem</li>
+                    <li>Rotas não mapeadas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÕES FINAIS -->
+    <div class="text-center mb-5">
+        <h4>🚀 Começar por aqui:</h4>
+        <a href="/" class="btn btn-primary btn-lg">Ir para Página Inicial</a>
+        <a href="/index.php?page=clientes" class="btn btn-primary btn-lg">Ver Clientes</a>
+        <a href="/test_api.php" class="btn btn-success btn-lg">Abrir Testes</a>
+    </div>
+</div>
+
+<script>
+const BASE_URL = '/SISTEMALAZER';
+
+async function testarURL(url) {
+    try {
+        const fullUrl = BASE_URL + url;
+        const response = await fetch(fullUrl);
+        const body = await response.text();
+        
+        if (response.status === 200) {
+            alert(`✅ URL respondeu com sucesso (${response.status})\n\nPrimeiros 100 caracteres:\n${body.substring(0, 100)}...`);
+        } else {
+            alert(`❌ Erro ${response.status}: ${response.statusText}`);
+        }
+    } catch (err) {
+        alert(`❌ Erro ao acessar: ${err.message}`);
+    }
+}
+
+async function testarAPI(url) {
+    try {
+        const fullUrl = BASE_URL + url;
+        const response = await fetch(fullUrl);
+        const data = await response.json();
+        
+        if (response.status === 200) {
+            alert(`✅ API respondeu com sucesso\n\n${JSON.stringify(data, null, 2).substring(0, 300)}...`);
+        } else {
+            alert(`❌ Erro ${response.status}`);
+        }
+    } catch (err) {
+        alert(`❌ Erro: ${err.message}`);
+    }
+}
+</script>
+</body>
+</html>
