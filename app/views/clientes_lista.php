@@ -78,9 +78,10 @@ $breadcrumb = [
     <div class="card-footer bg-light text-center" id="paginacao"></div>
 </div>
 
-<script src="/public/js/clientes.js"></script>
-
 <script>
+    // Configuração - Base URL para requisições AJAX
+    const BASE_URL = '/SISTEMALAZER';
+    
     document.addEventListener('DOMContentLoaded', function() {
         carregarClientes();
         
@@ -100,7 +101,7 @@ $breadcrumb = [
         const nome = document.getElementById('filtroNome').value;
         const tipo = document.getElementById('filtroTipo').value;
         
-        let url = `/api/clientes?pagina=${pagina}`;
+        let url = `${BASE_URL}/api.php?rota=clientes&pagina=${pagina}`;
         if (nome) url += `&nome=${encodeURIComponent(nome)}`;
         if (tipo) url += `&tipo=${tipo}`;
 
@@ -164,7 +165,7 @@ $breadcrumb = [
     function deletarCliente(id) {
         if (!confirm('Tem certeza que deseja deletar este cliente?')) return;
 
-        fetch(`/api/clientes/${id}`, { method: 'DELETE' })
+        fetch(`${BASE_URL}/api.php?rota=clientes&id=${id}`, { method: 'DELETE' })
             .then(r => r.json())
             .then(data => {
                 if (data.sucesso) {

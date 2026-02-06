@@ -215,6 +215,7 @@ $breadcrumb = [
     }
 
     function buscarCep() {
+        const BASE_URL = '/SISTEMALAZER';
         const cep = document.getElementById('cep').value.replace(/\D/g, '');
         
         if (cep.length !== 8) {
@@ -222,7 +223,7 @@ $breadcrumb = [
             return;
         }
 
-        fetch(`/api/viacep?cep=${cep}`)
+        fetch(`${BASE_URL}/api.php?rota=viacep&cep=${cep}`)
             .then(r => r.json())
             .then(data => {
                 if (data.erro) {
@@ -251,6 +252,7 @@ $breadcrumb = [
     }
 
     function salvarCliente() {
+        const BASE_URL = '/SISTEMALAZER';
         const clienteId = document.getElementById('clienteId').value;
         const dados = {
             tipo: document.getElementById('tipo').value,
@@ -270,8 +272,12 @@ $breadcrumb = [
             ativo: document.getElementById('ativo').checked ? 1 : 0
         };
 
-        const url = clienteId ? `/api/clientes/${clienteId}` : '/api/clientes';
+        let url = `${BASE_URL}/api.php?rota=clientes`;
         const metodo = clienteId ? 'PUT' : 'POST';
+        
+        if (clienteId) {
+            url += `&id=${clienteId}`;
+        }
 
         fetch(url, {
             method: metodo,
@@ -282,7 +288,7 @@ $breadcrumb = [
         .then(data => {
             if (data.sucesso) {
                 alert(clienteId ? 'Cliente atualizado com sucesso!' : 'Cliente criado com sucesso!');
-                window.location.href = '/clientes';
+                window.location.href = '/SISTEMALAZER/index.php?page=clientes';
             } else {
                 alert('Erro: ' + (data.mensagem || 'Desconhecido'));
             }

@@ -82,6 +82,9 @@ $breadcrumb = [
 </div>
 
 <script>
+    // Configuração - Base URL para requisições AJAX
+    const BASE_URL = '/SISTEMALAZER';
+    
     document.addEventListener('DOMContentLoaded', function() {
         carregarOrcamentos();
         document.getElementById('filtroNumero').addEventListener('keyup', debounce(carregarOrcamentos, 500));
@@ -100,7 +103,7 @@ $breadcrumb = [
         const numero = document.getElementById('filtroNumero').value;
         const status = document.getElementById('filtroStatus').value;
         
-        let url = `/api/orcamentos?pagina=${pagina}`;
+        let url = `${BASE_URL}/api.php?rota=orcamentos&pagina=${pagina}`;
         if (numero) url += `&numero=${encodeURIComponent(numero)}`;
         if (status) url += `&status=${status}`;
 

@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /SISTEMALAZER/
+    
+    # Redirecionar /api/* para api.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/(.*) api.php?%{QUERY_STRING} [L,QSA]
+    
+    # Permitir acesso a arquivos e diretórios reais
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Redirecionar para index.php (para o roteador web)
+    RewriteRule ^ index.php [L]
+</IfModule>
