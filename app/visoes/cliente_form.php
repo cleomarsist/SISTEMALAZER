@@ -171,7 +171,7 @@ $breadcrumb = [
     </div>
 </form>
 
-<script src="/public/js/cliente_form.js"></script>
+<script src="/publico/js/cliente_form.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

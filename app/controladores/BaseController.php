@@ -242,7 +242,7 @@ class BaseController {
         extract($this->data);
         
         // Caminho do arquivo da view
-        $viewFile = APP_PATH . '/views/' . strtolower($this->module) . '/' . $view . '.php';
+        $viewFile = APP_PATH . '/visoes/' . strtolower($this->module) . '/' . $view . '.php';
         
         // Verifica se arquivo da view existe
         if (!file_exists($viewFile)) {
@@ -270,7 +270,7 @@ class BaseController {
         extract($this->data);
         
         // Caminho do layout
-        $layoutFile = APP_PATH . '/views/layout/' . $layout . '.php';
+        $layoutFile = APP_PATH . '/visoes/layout/' . $layout . '.php';
         
         // Se arquivo existe, carrega
         if (file_exists($layoutFile)) {
@@ -290,7 +290,7 @@ class BaseController {
         extract($this->data);
         
         // Caminho da view
-        $viewFile = APP_PATH . '/views/' . strtolower($this->module) . '/' . $view . '.php';
+        $viewFile = APP_PATH . '/visoes/' . strtolower($this->module) . '/' . $view . '.php';
         
         if (!file_exists($viewFile)) {
             throw new Exception("View não encontrada: {$viewFile}");

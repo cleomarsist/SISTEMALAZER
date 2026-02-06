@@ -9,8 +9,8 @@
 // Configuração básica
 define('BASE_PATH', __DIR__);
 define('APP_PATH', BASE_PATH . '/app');
-define('PUBLIC_PATH', BASE_PATH . '/public');
-define('VIEWS_PATH', APP_PATH . '/views');
+define('PUBLIC_PATH', BASE_PATH . '/publico');
+define('VIEWS_PATH', APP_PATH . '/visoes');
 
 // Iniciar sessão
 session_start();
@@ -30,6 +30,15 @@ $routes = [
     'cliente-novo' => VIEWS_PATH . '/cliente_form.php',
     'cliente-form' => VIEWS_PATH . '/cliente_form.php',
     'orcamentos' => VIEWS_PATH . '/orcamentos_lista.php',
+    'materiais' => VIEWS_PATH . '/materiais_lista.php',
+    'custos' => VIEWS_PATH . '/custos_lista.php',
+    'produtos' => VIEWS_PATH . '/produtos_lista.php',
+    'pedidos' => VIEWS_PATH . '/pedidos_lista.php',
+    'simulacoes' => VIEWS_PATH . '/simulacoes.php',
+    'viacep' => VIEWS_PATH . '/viacep.php',
+    'relatorios' => VIEWS_PATH . '/relatorios.php',
+    'perfil' => VIEWS_PATH . '/perfil.php',
+    'logout' => VIEWS_PATH . '/dashboard.php',
 ];
 
 // Obter view da rota

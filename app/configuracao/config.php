@@ -40,8 +40,8 @@ define('DB_OPTIONS', [
 // Caminho raiz do projeto (ajustar conforme seu servidor)
 define('ROOT_PATH', dirname(dirname(dirname(__FILE__))));     // Caminho até /
 define('APP_PATH', ROOT_PATH . '/app');                       // Caminho até /app
-define('PUBLIC_PATH', ROOT_PATH . '/public');                 // Caminho até /public
-define('LOGS_PATH', ROOT_PATH . '/logs');                     // Caminho até /logs
+define('PUBLIC_PATH', ROOT_PATH . '/publico');                // Caminho até /publico
+define('LOGS_PATH', ROOT_PATH . '/registros');               // Caminho até /registros
 
 // ============================================================================
 // 3. CONFIGURAÇÕES DE SEGURANÇA
