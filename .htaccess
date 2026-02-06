@@ -2,16 +2,25 @@
     RewriteEngine On
     RewriteBase /SISTEMALAZER/
     
-    # Redirecionar /api/* para api.php
+    # Permitir acesso a arquivos e diretórios reais
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api/(.*) api.php?%{QUERY_STRING} [L,QSA]
     
-    # Permitir acesso a arquivos e diretórios reais
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
+    # URLs amigáveis para páginas: /clientes → ?page=clientes
+    RewriteRule ^clientes/?$ index.php?page=clientes [L,QSA]
+    RewriteRule ^cliente-novo/?$ index.php?page=cliente-novo [L,QSA]
+    RewriteRule ^cliente-form/?$ index.php?page=cliente-form [L,QSA]
+    RewriteRule ^orcamentos/?$ index.php?page=orcamentos [L,QSA]
+    RewriteRule ^dashboard/?$ index.php?page=dashboard [L,QSA]
+    RewriteRule ^home/?$ index.php?page=dashboard [L,QSA]
     
-    # Redirecionar para index.php (para o roteador web)
+    # URLs amigáveis para API: /api/clientes → api.php?rota=clientes
+    RewriteRule ^api/clientes/?$ api.php?rota=clientes [L,QSA]
+    RewriteRule ^api/orcamentos/?$ api.php?rota=orcamentos [L,QSA]
+    RewriteRule ^api/viacep/?$ api.php?rota=viacep [L,QSA]
+    
+    # Fallback final: redirecionar para index.php se nenhuma regra acima bateu
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
 </IfModule>
