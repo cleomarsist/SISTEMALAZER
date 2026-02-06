@@ -16,7 +16,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/public/css/style.css">
     <!-- Chart.js para gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -241,12 +241,12 @@
     <!-- jQuery (opcional, para AJAX) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custom JavaScript -->
-    <script src="/public/js/main.js"></script>
+    <script src="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/public/js/main.js"></script>
     
     <!-- Scripts adicionais (carregado por página) -->
     <?php if (isset($scripts)): ?>
         <?php foreach ($scripts as $script): ?>
-            <script src="<?php echo htmlspecialchars($script); ?>"></script>
+            <script src="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/<?php echo htmlspecialchars($script); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 </body>

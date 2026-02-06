@@ -10,45 +10,47 @@
 define('BASE_PATH', __DIR__);
 define('APP_PATH', BASE_PATH . '/app');
 define('PUBLIC_PATH', BASE_PATH . '/public');
+define('VIEWS_PATH', APP_PATH . '/views');
 
 // Iniciar sessão
 session_start();
 
-// Header padrão para status OK
+// Header padrão
 http_response_code(200);
 header('Content-Type: text/html; charset=utf-8');
 
-// Simular página solicitada (em produção, usar roteador)
+// Obter página requisitada
 $page = $_GET['page'] ?? 'dashboard';
 $view = null;
 
-// Mapeamento de rotas simples
+// Mapeamento de rotas
 $routes = [
-    'dashboard' => APP_PATH . '/Views/dashboard.php',
-    'clientes' => APP_PATH . '/Views/clientes_lista.php',
-    'cliente-form' => APP_PATH . '/Views/cliente_form.php',
-    'orcamentos' => APP_PATH . '/Views/orcamentos_lista.php',
+    'dashboard' => VIEWS_PATH . '/dashboard.php',
+    'clientes' => VIEWS_PATH . '/clientes_lista.php',
+    'cliente-novo' => VIEWS_PATH . '/cliente_form.php',
+    'cliente-form' => VIEWS_PATH . '/cliente_form.php',
+    'orcamentos' => VIEWS_PATH . '/orcamentos_lista.php',
 ];
 
-// Validar rota
+// Obter view da rota
 if (array_key_exists($page, $routes)) {
     $view = $routes[$page];
 } else {
-    // Página padrão
-    $view = $routes['dashboard'];
+    $view = $routes['dashboard']; // padrão
 }
 
-// Verificar si o arquivo de view existe
+// Verificar arquivo
 if (!file_exists($view)) {
     http_response_code(404);
-    echo '<div class="alert alert-danger">Página não encontrada: ' . htmlspecialchars($page) . '</div>';
+    echo '<div class="alert alert-danger">Arquivo não encontrado: ' . htmlspecialchars($page) . '</div>';
+    echo '<p>Procurando em: ' . htmlspecialchars($view) . '</p>';
     exit;
 }
 
-// Definir variáveis para a view
-$page = basename($view, '.php');
-$title = ucfirst(str_replace('_', ' ', $page));
+// Preparar variáveis para layout
+$page_name = basename($view, '.php');
+$title = ucfirst(str_replace('_', ' ', $page_name));
 
-// Carregar layout
-include APP_PATH . '/Views/layout.php';
+// Incluir layout (que incluirá a view específica)
+include VIEWS_PATH . '/layout.php';
 ?>
